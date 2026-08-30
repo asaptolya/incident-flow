@@ -10,15 +10,29 @@ from app.api.events import router as events_router
 from app.bot.bot import start_bot, stop_bot
 import asyncio
 from app.api.monitors import router as monitors_router
+from app.services.monitor_service import monitor_loop
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     bot_task = None
 
     if settings.TELEGRAM_BOT_TOKEN:
-        bot_task = asyncio.create_task(start_bot())
+        bot_task = asyncio.create_task(
+            start_bot()
+        )
+
+    monitor_task = asyncio.create_task(
+        monitor_loop()
+    )
 
     yield
+
+    monitor_task.cancel()
+
+    try:
+        await monitor_task
+    except asyncio.CancelledError:
+        pass
 
     if bot_task:
         bot_task.cancel()
