@@ -28,22 +28,6 @@ The project demonstrates an asynchronous Python backend with database persistenc
 
 ---
 
-## 🛠 Tech Stack
-
-- **Python 3.11+**
-- **FastAPI**
-- **aiogram 3**
-- **PostgreSQL**
-- **SQLAlchemy**
-- **asyncpg**
-- **Alembic**
-- **Pydantic**
-- **Docker**
-- **Docker Compose**
-- **Uvicorn**
-
----
-
 ## 🏗 Architecture
 
 ```text
@@ -71,54 +55,6 @@ External Service
 Incoming events are processed by the API and converted into incidents.
 
 Each incident is persisted in PostgreSQL and can trigger a Telegram notification with interactive controls for acknowledging or resolving the incident.
-
----
-
-## 📁 Project Structure
-
-```text
-incidentflow/
-|
-├── alembic/
-│   └── versions/
-│
-├── app/
-│   ├── api/
-│   │   ├── events.py
-│   │   ├── health.py
-│   │   └── incidents.py
-│   │
-│   ├── bot/
-│   │   ├── bot.py
-│   │   ├── handlers.py
-│   │   └── keyboards.py
-│   │
-│   ├── core/
-│   │   ├── config.py
-│   │   └── database.py
-│   │
-│   ├── models/
-│   │   ├── base.py
-│   │   ├── event.py
-│   │   └── incident.py
-│   │
-│   ├── schemas/
-│   │   ├── event.py
-│   │   └── incident.py
-│   │
-│   ├── services/
-│   │   ├── incident_service.py
-│   │   └── notification_service.py
-│   │
-│   └── main.py
-│
-├── .env.example
-├── .gitignore
-├── alembic.ini
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
-```
 
 ---
 
