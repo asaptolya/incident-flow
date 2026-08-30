@@ -9,6 +9,7 @@ from app.core.database import engine
 from app.api.events import router as events_router
 from app.bot.bot import start_bot, stop_bot
 import asyncio
+from app.api.monitors import router as monitors_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -42,6 +43,7 @@ app = FastAPI(
 app.include_router(health_router)
 app.include_router(incidents_router)
 app.include_router(events_router)
+app.include_router(monitors_router)
 
 @app.get("/", tags=["Root"])
 async def root():
