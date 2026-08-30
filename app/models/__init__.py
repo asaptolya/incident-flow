@@ -5,6 +5,7 @@ from app.models.incident import (
     IncidentSeverity,
     IncidentStatus,
 )
+from app.models.monitor import Monitor
 
 __all__ = [
     "Base",
@@ -12,4 +13,5 @@ __all__ = [
     "Incident",
     "IncidentSeverity",
     "IncidentStatus",
+    "Monitor",
 ]
